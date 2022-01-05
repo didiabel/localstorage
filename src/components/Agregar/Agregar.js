@@ -46,7 +46,7 @@ const Agregar = ({products, setProducts}) => {
                 <button onClick={agregarProducto} type="submit" className="btn btn-success">Agregar</button>
             </form>
             {error ? 
-            <div className=''>Los campos estan incompletos o el valor el menor a "0"</div> 
+            <div className=''>Los campos estan incompletos o el valor es menor a "0"</div> 
             :
             <div className=''>Agregado</div>}
         </div>
