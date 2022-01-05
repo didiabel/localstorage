@@ -18,6 +18,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/localstorage" element={<Agregar products={products} setProducts={setProducts} />} />
         <Route path="/" element={<Agregar products={products} setProducts={setProducts} />} />
         <Route path="/productos" element={<Productos products={products} setProducts={setProducts} />} />
       </Routes>
