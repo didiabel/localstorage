@@ -6,54 +6,20 @@ import './App.css';
 import { useState, useEffect } from 'react';
 
 function App() {
-  // const [products, setProducts]= useState([])
-  let products = JSON.parse(localStorage.getItem('productos'))
-  const [name, setName] = useState('')
-  const [qty, setQty] = useState('')
-  const [Price, setPrice] = useState('')
-
-const Datos =(e)=>{
-  e.preventDefault()
-  const Datos = {
-      name: name,
-      qty: qty,
-      price: Price
-  }
+  let storage = JSON.parse(localStorage.getItem('products'))
+  const [products, setProducts]= useState(storage ? storage : [] )
   
-  if (products !== null) {
-    
-    products.push(Datos)
-    localStorage.setItem('productos', JSON.stringify(products))
-  }
-    else{
-      products = []
-      products.push(Datos)
-      localStorage.setItem('productos', JSON.stringify(products))
-    }
-  }
-//   products !== null ? 
+
+  useEffect( ()=>{
+    localStorage.setItem('products',JSON.stringify(products))
+  },[products])
   
-//   products.push(Datos)
-//   localStorage.setItem('productos', JSON.stringify(products))
-
-//   :
-
-//   products = []
-//   products.push(Datos)
-//   localStorage.setItem('productos', JSON.stringify(products))
-// }
-
-
-// useEffect( ()=>{
-//   products = JSON.parse(localStorage.getItem('productos'))
-//   console.log(products);
-// },[])
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Agregar setName={setName} setQty={setQty} setPrice={setPrice} Datos={Datos}/>} />
-        <Route path="/productos" element={<Productos Datos={Datos} products={products} />} />
+        <Route path="/" element={<Agregar products={products} setProducts={setProducts} />} />
+        <Route path="/productos" element={<Productos products={products} setProducts={setProducts} />} />
       </Routes>
     </Router>
   );
