@@ -16,7 +16,7 @@ const Agregar = ({products, setProducts}) => {
     }
     const agregarProducto =(e)=>{
         e.preventDefault()
-        if (name ==='' || qty === '' || Price === '') {
+        if ( qty < 0 || Price < 0 || name ==='' || qty === '' || Price === '') {
             return setError(true)
         }
         setError(false)
@@ -46,9 +46,9 @@ const Agregar = ({products, setProducts}) => {
                 <button onClick={agregarProducto} type="submit" className="btn btn-success">Agregar</button>
             </form>
             {error ? 
-            <div className=''>los campos estan incompletos</div> 
+            <div className=''>Los campos estan incompletos o el valor el menor a "0"</div> 
             :
-            <div className=''>agregado</div>}
+            <div className=''>Agregado</div>}
         </div>
     );
 }
